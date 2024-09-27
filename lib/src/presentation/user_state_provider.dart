@@ -5,43 +5,43 @@ import 'package:flutter_user_state_notifier/src/domain/service/user_state_servic
 class UserStateProvider extends InheritedWidget {
   UserStateProvider({
     required super.child,
-    required this.buildLoadingScreen,
-    required this.buildLoadingPopup,
-    required this.buildInfoPopup,
-    required this.buildErrorPopup,
-    ErrorReason? genericErrorReason,
-    LoadingReason? genericLoadingReason,
+    required this.onBuildLoadingScreen,
+    required this.onBuildLoadingPopup,
+    required this.onBuildInfoPopup,
+    required this.onBuildErrorPopup,
+    required this.onGenerateGenericLoadingCaption,
+    required this.onGenerateGenericLoadingDescription,
+    required this.onGenerateGenericErrorCaption,
+    required this.onGenerateGenericErrorDescription,
+    required this.onGenerateGenericButtonLabel,
     super.key,
-  }) {
-    userState = UserStateService(
-      genericErrorReason: genericErrorReason,
-      genericLoadingReason: genericLoadingReason,
-    );
-  }
+  }) : userState = UserStateService();
 
-  late final UserStateService userState;
+  final UserStateService userState;
 
   final Widget Function(
-    BuildContext context,
     LoadingReason reason,
-  ) buildLoadingScreen;
+  ) onBuildLoadingScreen;
 
   final Widget Function(
-    BuildContext context,
     LoadingReason reason,
-  ) buildLoadingPopup;
+  ) onBuildLoadingPopup;
 
   final Widget Function(
-    BuildContext context,
     InfoReason reason,
     VoidCallback onConfirm,
-  ) buildInfoPopup;
+  ) onBuildInfoPopup;
 
   final Widget Function(
-    BuildContext context,
     ErrorReason reason,
     VoidCallback onConfirm,
-  ) buildErrorPopup;
+  ) onBuildErrorPopup;
+
+  final String Function(BuildContext context) onGenerateGenericLoadingCaption;
+  final String Function(BuildContext context) onGenerateGenericLoadingDescription;
+  final String Function(BuildContext context) onGenerateGenericErrorCaption;
+  final String Function(BuildContext context) onGenerateGenericErrorDescription;
+  final String Function(BuildContext context) onGenerateGenericButtonLabel;
 
   static UserStateProvider of(BuildContext context) =>
       context.getInheritedWidgetOfExactType<UserStateProvider>()!;

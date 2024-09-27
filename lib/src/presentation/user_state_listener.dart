@@ -50,14 +50,12 @@ class _UserStateListenerState extends State<UserStateListener> {
             widget.child,
             if (loadingReason != null)
               loadingReason.isFullScreen
-                  ? UserStateProvider.of(context).buildLoadingScreen(
-                      context,
+                  ? UserStateProvider.of(context).onBuildLoadingScreen(
                       loadingReason,
                     )
                   : ColoredBox(
                       color: Colors.black.withOpacity(.3),
-                      child: UserStateProvider.of(context).buildLoadingPopup(
-                        context,
+                      child: UserStateProvider.of(context).onBuildLoadingPopup(
                         loadingReason,
                       ),
                     ),
@@ -76,8 +74,7 @@ class _UserStateListenerState extends State<UserStateListener> {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => UserStateProvider.of(context).buildInfoPopup(
-          context,
+        builder: (context) => UserStateProvider.of(context).onBuildInfoPopup(
           reason,
           () async {
             void pop() => Navigator.of(context).pop();
@@ -91,8 +88,7 @@ class _UserStateListenerState extends State<UserStateListener> {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => UserStateProvider.of(context).buildErrorPopup(
-          context,
+        builder: (context) => UserStateProvider.of(context).onBuildErrorPopup(
           reason,
           () async {
             void pop() => Navigator.of(context).pop();
