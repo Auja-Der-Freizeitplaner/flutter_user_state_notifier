@@ -5,11 +5,11 @@ abstract class LoadingReason extends Reason {
   bool get isFullScreen => false;
 
   String getCaption(BuildContext context) {
-    return "Loading";
+    return 'Loading';
   }
 
   String getDescription(BuildContext context) {
-    return "Please wait";
+    return 'Please wait';
   }
 }
 

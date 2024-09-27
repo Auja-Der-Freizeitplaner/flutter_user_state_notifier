@@ -8,12 +8,12 @@ abstract class InfoReason extends Reason {
   final FutureOr<void> Function()? onConfirm;
 
   String getCaption(BuildContext context) {
-    return "Info";
+    return 'Info';
   }
 
   String getDescription(BuildContext context);
 
   String getButtonLabel(BuildContext context) {
-    return "Okay";
+    return 'Okay';
   }
 }

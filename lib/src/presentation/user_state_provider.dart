@@ -4,7 +4,6 @@ import 'package:flutter_user_state_notifier/src/domain/service/user_state_servic
 
 class UserStateProvider extends InheritedWidget {
   UserStateProvider({
-    super.key,
     required super.child,
     required this.buildLoadingScreen,
     required this.buildLoadingPopup,
@@ -12,6 +11,7 @@ class UserStateProvider extends InheritedWidget {
     required this.buildErrorPopup,
     ErrorReason? genericErrorReason,
     LoadingReason? genericLoadingReason,
+    super.key,
   }) {
     userState = UserStateService(
       genericErrorReason: genericErrorReason,
@@ -46,8 +46,10 @@ class UserStateProvider extends InheritedWidget {
   static UserStateProvider of(BuildContext context) =>
       context.getInheritedWidgetOfExactType<UserStateProvider>()!;
 
-  static UserStateService serviceOf(BuildContext context,
-      {bool listen = true}) {
+  static UserStateService serviceOf(
+    BuildContext context, {
+    bool listen = true,
+  }) {
     if (listen) {
       return context
           .dependOnInheritedWidgetOfExactType<UserStateProvider>()!

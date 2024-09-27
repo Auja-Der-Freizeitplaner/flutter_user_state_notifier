@@ -8,15 +8,15 @@ abstract class ErrorReason extends Reason {
   final FutureOr<void> Function()? onConfirm;
 
   String getCaption(BuildContext context) {
-    return "Error";
+    return 'Error';
   }
 
   String getDescription(BuildContext context) {
-    return "An unknown Error occurred";
+    return 'An unknown Error occurred';
   }
 
   String getButtonLabel(BuildContext context) {
-    return "Okay";
+    return 'Okay';
   }
 }
 
