@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_user_state_notifier/flutter_user_state_notifier.dart';
 
 class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({
-    super.key,
-    required this.caption,
-    required this.description,
-  });
+  const LoadingScreen(this.reason, {super.key});
 
-  final String caption;
-  final String description;
+  final LoadingReason reason;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +15,13 @@ class LoadingScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              caption,
+              reason.getCaption(context),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 16),
             const CircularProgressIndicator(),
             const SizedBox(height: 16),
-            Text(description),
+            Text(reason.getDescription(context)),
           ],
         ),
       ),

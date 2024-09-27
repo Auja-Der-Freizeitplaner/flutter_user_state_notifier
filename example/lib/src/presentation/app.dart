@@ -3,8 +3,8 @@ import 'package:example/src/domain/messages/custom_loading_reason.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_user_state_notifier/flutter_user_state_notifier.dart';
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +27,22 @@ class MainApp extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () async {
                       final service = context.userStateService;
-                      service.setLoading(CustomLoadingReason());
+                      service
+                          .setLoading(CustomLoadingReason(isFullScreen: true));
                       await Future.delayed(const Duration(seconds: 4));
                       service.reset();
                     },
-                    child: const Text("Set Loading")),
+                    child: const Text("Set Loading FullScreen")),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                    onPressed: () async {
+                      final service = context.userStateService;
+                      service
+                          .setLoading(CustomLoadingReason(isFullScreen: false));
+                      await Future.delayed(const Duration(seconds: 4));
+                      service.reset();
+                    },
+                    child: const Text("Set Loading Popup")),
               ],
             ),
           ),
