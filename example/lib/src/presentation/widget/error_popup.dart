@@ -2,10 +2,11 @@ import 'package:example/src/presentation/widget/popup_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_user_state_notifier/flutter_user_state_notifier.dart';
 
-class LoadingPopup extends StatelessWidget {
-  const LoadingPopup(this.reason, {super.key});
+class ErrorPopup extends StatelessWidget {
+  const ErrorPopup(this.reason, this.onConfirm, {super.key});
 
-  final LoadingReason reason;
+  final ErrorReason reason;
+  final VoidCallback onConfirm;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +19,12 @@ class LoadingPopup extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 16),
-          const CircularProgressIndicator(),
-          const SizedBox(height: 16),
           Text(reason.getDescription(context)),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: onConfirm,
+            child: Text(reason.getButtonLabel(context)),
+          )
         ],
       ),
     );

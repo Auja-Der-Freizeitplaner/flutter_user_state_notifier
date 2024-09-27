@@ -1,18 +1,11 @@
 import 'package:example/src/presentation/widget/popup_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_user_state_notifier/flutter_user_state_notifier.dart';
 
 class InfoPopup extends StatelessWidget {
-  const InfoPopup({
-    super.key,
-    required this.caption,
-    required this.description,
-    required this.buttonLabel,
-    required this.onConfirm,
-  });
+  const InfoPopup(this.reason, this.onConfirm, {super.key});
 
-  final String caption;
-  final String description;
-  final String buttonLabel;
+  final InfoReason reason;
   final VoidCallback onConfirm;
 
   @override
@@ -22,15 +15,15 @@ class InfoPopup extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            caption,
+            reason.getCaption(context),
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 16),
-          Text(description),
+          Text(reason.getDescription(context)),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: onConfirm,
-            child: Text(buttonLabel),
+            child: Text(reason.getButtonLabel(context)),
           )
         ],
       ),

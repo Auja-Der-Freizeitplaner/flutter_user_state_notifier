@@ -6,4 +6,9 @@ class CustomInfoReason extends InfoReason {
   String getDescription(BuildContext context) {
     return "My Custom Info popup";
   }
+
+  @override
+  String getCaption(BuildContext context) {
+    return "Info";
+  }
 }
