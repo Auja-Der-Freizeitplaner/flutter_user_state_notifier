@@ -6,7 +6,7 @@ abstract class LoadingReason extends Reason {
   bool get isFullScreen => false;
 
   String getCaption(BuildContext context) =>
-      UserStateProvider.of(context).onGenerateGenericLoadingDescription(context);
+      UserStateProvider.of(context).onGenerateGenericLoadingCaption(context);
 
   String getDescription(BuildContext context) =>
       UserStateProvider.of(context).onGenerateGenericLoadingDescription(context);

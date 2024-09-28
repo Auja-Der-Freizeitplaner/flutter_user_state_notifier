@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_user_state_notifier/flutter_user_state_notifier.dart';
-import 'package:flutter_user_state_notifier/src/domain/service/user_state_service.dart';
 
 class UserStateProvider extends InheritedWidget {
   UserStateProvider({

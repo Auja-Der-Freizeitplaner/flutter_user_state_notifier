@@ -1,0 +1,13 @@
+{
+  "btn_okay": "Okay",
+  "btn_retry": "Retry",
+  "btn_start_heavy_task": "Start Heavy Task",
+  "generic_error_caption": "Oops!",
+  "generic_error_description": "Something went wrong",
+  "generic_loading_caption": "Loading",
+  "generic_loading_description": "Please wait...",
+  "heavy_task_success_info_caption": "Nice",
+  "heavy_task_success_info_description": "Heavy Task finished with Id {id}",
+  "heavy_task_success_loading_description": "Heavy Task is being executed",
+  "heavy_task_success_error_description": "Processing the Heavy Task resulted in an error"
+}
