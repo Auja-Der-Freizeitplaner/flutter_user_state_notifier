@@ -1,6 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_user_state_notifier/flutter_user_state_notifier.dart';
+import 'package:flutter_user_state_notifier/src/presentation/popup/fallback_error_popup.dart';
+import 'package:flutter_user_state_notifier/src/presentation/popup/fallback_info_popup.dart';
+import 'package:flutter_user_state_notifier/src/presentation/popup/fallback_loading_popup.dart';
+import 'package:flutter_user_state_notifier/src/presentation/popup/fallback_loading_screen.dart';
 
 class UserStateListener extends StatefulWidget {
   const UserStateListener({
@@ -50,14 +56,18 @@ class _UserStateListenerState extends State<UserStateListener> {
             widget.child,
             if (loadingReason != null)
               loadingReason.isFullScreen
-                  ? UserStateProvider.of(context).onBuildLoadingScreen(
-                      loadingReason,
-                    )
+                  ? UserStateProvider.of(context).onBuildLoadingScreen?.call(
+                            loadingReason,
+                          ) ??
+                      FallbackLoadingScreen(loadingReason)
                   : ColoredBox(
                       color: Colors.black.withOpacity(.3),
-                      child: UserStateProvider.of(context).onBuildLoadingPopup(
-                        loadingReason,
-                      ),
+                      child: UserStateProvider.of(context)
+                              .onBuildLoadingPopup
+                              ?.call(
+                                loadingReason,
+                              ) ??
+                          FallbackLoadingPopup(loadingReason),
                     ),
           ],
         );
@@ -70,33 +80,35 @@ class _UserStateListenerState extends State<UserStateListener> {
     final isCurrent = ModalRoute.of(context)?.isCurrent ?? false;
     if (!isCurrent) return;
     final service = context.userStateService;
+
+    Future<void> Function() onConfirm(FutureOr<void> Function()? onConfirm) =>
+        () async {
+          void pop() => Navigator.of(context).pop();
+          service.reset();
+          await onConfirm?.call();
+          pop();
+        };
+
     if (service.reason case final InfoReason reason) {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => UserStateProvider.of(context).onBuildInfoPopup(
-          reason,
-          () async {
-            void pop() => Navigator.of(context).pop();
-            service.reset();
-            await reason.onConfirm?.call();
-            pop();
-          },
-        ),
+        builder: (context) =>
+            UserStateProvider.of(context)
+                .onBuildInfoPopup
+                ?.call(reason, onConfirm(reason.onConfirm)) ??
+            FallbackInfoPopup(reason, onConfirm(reason.onConfirm)),
       );
     } else if (service.reason case final ErrorReason reason) {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => UserStateProvider.of(context).onBuildErrorPopup(
-          reason,
-          () async {
-            void pop() => Navigator.of(context).pop();
-            service.reset();
-            await reason.onConfirm?.call();
-            pop();
-          },
-        ),
+        builder: (context) =>
+            UserStateProvider.of(context).onBuildErrorPopup?.call(
+                  reason,
+                  onConfirm(reason.onConfirm),
+                ) ??
+            FallbackErrorPopup(reason, onConfirm(reason.onConfirm)),
       );
     }
   }

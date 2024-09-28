@@ -5,10 +5,10 @@ import 'package:flutter_user_state_notifier/src/domain/service/user_state_servic
 class UserStateProvider extends InheritedWidget {
   UserStateProvider({
     required super.child,
-    required this.onBuildLoadingScreen,
-    required this.onBuildLoadingPopup,
-    required this.onBuildInfoPopup,
-    required this.onBuildErrorPopup,
+    this.onBuildLoadingScreen,
+    this.onBuildLoadingPopup,
+    this.onBuildInfoPopup,
+    this.onBuildErrorPopup,
     required this.onGenerateGenericLoadingCaption,
     required this.onGenerateGenericLoadingDescription,
     required this.onGenerateGenericErrorCaption,
@@ -21,24 +21,25 @@ class UserStateProvider extends InheritedWidget {
 
   final Widget Function(
     LoadingReason reason,
-  ) onBuildLoadingScreen;
+  )? onBuildLoadingScreen;
 
   final Widget Function(
     LoadingReason reason,
-  ) onBuildLoadingPopup;
+  )? onBuildLoadingPopup;
 
   final Widget Function(
     InfoReason reason,
     VoidCallback onConfirm,
-  ) onBuildInfoPopup;
+  )? onBuildInfoPopup;
 
   final Widget Function(
     ErrorReason reason,
     VoidCallback onConfirm,
-  ) onBuildErrorPopup;
+  )? onBuildErrorPopup;
 
   final String Function(BuildContext context) onGenerateGenericLoadingCaption;
-  final String Function(BuildContext context) onGenerateGenericLoadingDescription;
+  final String Function(BuildContext context)
+      onGenerateGenericLoadingDescription;
   final String Function(BuildContext context) onGenerateGenericErrorCaption;
   final String Function(BuildContext context) onGenerateGenericErrorDescription;
   final String Function(BuildContext context) onGenerateGenericButtonLabel;
