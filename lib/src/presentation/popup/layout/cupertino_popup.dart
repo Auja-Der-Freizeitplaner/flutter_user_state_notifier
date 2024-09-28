@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_user_state_notifier/src/core/app/app_colors.dart';
 
 class CupertinoPopup extends StatelessWidget {
   const CupertinoPopup({
-    super.key,
     required this.caption,
     required this.description,
     required this.buttonLabel,
     required this.onTap,
+    super.key,
   });
+
   final String caption;
   final String description;
   final String buttonLabel;
@@ -27,10 +27,10 @@ class CupertinoPopup extends StatelessWidget {
             onTap: onTap,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Text(
                   buttonLabel,
-                  style: TextStyle(color: AppColors.iOSSystemBlue),
+                  style: const TextStyle(color: CupertinoColors.activeBlue),
                 ),
               ),
             ),

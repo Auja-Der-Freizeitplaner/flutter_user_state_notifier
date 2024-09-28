@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class MaterialPopup extends StatelessWidget {
   const MaterialPopup({
-    super.key,
     required this.caption,
     required this.description,
     required this.buttonLabel,
     required this.onTap,
+    super.key,
   });
+  
   final String caption;
   final String description;
   final String buttonLabel;

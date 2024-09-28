@@ -16,7 +16,7 @@ class FallbackLoadingPopup extends StatelessWidget {
           const SizedBox(height: 16),
           const CircularProgressIndicator.adaptive(),
           const SizedBox(height: 16),
-          Text(reason.getDescription(context))
+          Text(reason.getDescription(context)),
         ],
       ),
     );
