@@ -83,11 +83,8 @@ class _UserStateListenerState extends State<UserStateListener> {
 
     Future<void> Function() onConfirm(VoidCallback? onConfirm) => () async {
           service.reset();
-          if (onConfirm != null) {
-            onConfirm();
-          } else {
-            Navigator.of(context).pop();
-          }
+          onConfirm?.call();
+          Navigator.of(context).pop();
         };
 
     if (service.reason case final InfoReason reason) {
