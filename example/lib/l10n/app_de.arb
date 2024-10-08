@@ -1,0 +1,13 @@
+{
+  "btn_okay": "Okay",
+  "btn_retry": "Wiederholen",
+  "btn_start_heavy_task": "Starte Heavy Task",
+  "generic_error_caption": "Ups!",
+  "generic_error_description": "Etwas ist schief gelaufen",
+  "generic_loading_caption": "Laden",
+  "generic_loading_description": "Hab einen moment Geduld...",
+  "heavy_task_success_info_caption": "Sehr gut",
+  "heavy_task_success_info_description": "Heavy Task mit Id {id} abgeschlossen",
+  "heavy_task_success_loading_description": "Heavy Task wird ausgeführt",
+  "heavy_task_success_error_description": "Der Heavy Task ist auf einen Fehler gelaufen"
+}
