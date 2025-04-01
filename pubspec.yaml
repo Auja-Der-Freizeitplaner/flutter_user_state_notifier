@@ -1,11 +1,10 @@
 name: flutter_user_state_notifier
 description: "A new Flutter package project."
-version: 0.3.0
-homepage:
+version: 1.0.0
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
@@ -15,5 +14,3 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-
-flutter:
