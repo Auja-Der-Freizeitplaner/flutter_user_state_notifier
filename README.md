@@ -26,9 +26,7 @@ The package comes with the following feature set:
 Open the `pubspec.yaml` and add the following snippet as `dependency`:
 ```yaml
 dependency:
-    # ...
-    flutter_user_state_notifier:
-        git: TODO
+    flutter_user_state_notifier: ^1.0.0
 ```
 
 ## Usage
