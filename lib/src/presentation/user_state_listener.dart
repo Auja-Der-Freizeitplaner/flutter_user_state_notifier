@@ -21,6 +21,8 @@ class UserStateListener extends StatefulWidget {
 }
 
 class _UserStateListenerState extends State<UserStateListener> {
+  late final _userStateService = context.userStateService;
+
   @override
   void didChangeDependencies() {
     SchedulerBinding.instance.addPostFrameCallback((_) => _notifyUser());
@@ -29,23 +31,23 @@ class _UserStateListenerState extends State<UserStateListener> {
 
   @override
   void initState() {
-    context.userStateService.addListener(_notifyUser);
+    _userStateService.addListener(_notifyUser);
     super.initState();
   }
 
   @override
   void dispose() {
-    context.userStateService.removeListener(_notifyUser);
+    _userStateService.removeListener(_notifyUser);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: context.userStateService,
+      listenable: _userStateService,
       builder: (context, child) {
         late final LoadingReason? loadingReason;
-        if (context.userStateService.reason case final LoadingReason reason) {
+        if (_userStateService.reason case final LoadingReason reason) {
           loadingReason = reason;
         } else {
           loadingReason = null;
@@ -79,15 +81,14 @@ class _UserStateListenerState extends State<UserStateListener> {
   void _notifyUser() {
     final isCurrent = ModalRoute.of(context)?.isCurrent ?? false;
     if (!isCurrent) return;
-    final service = context.userStateService;
 
     Future<void> Function() onConfirm(VoidCallback? onConfirm) => () async {
-          service.reset();
+          _userStateService.reset();
           onConfirm?.call();
           Navigator.of(context).pop();
         };
 
-    if (service.reason case final InfoReason reason) {
+    if (_userStateService.reason case final InfoReason reason) {
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -97,7 +98,7 @@ class _UserStateListenerState extends State<UserStateListener> {
                 ?.call(reason, onConfirm(reason.onConfirm)) ??
             FallbackInfoPopup(reason, onConfirm(reason.onConfirm)),
       );
-    } else if (service.reason case final ErrorReason reason) {
+    } else if (_userStateService.reason case final ErrorReason reason) {
       showDialog(
         context: context,
         barrierDismissible: false,

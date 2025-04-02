@@ -14,9 +14,9 @@ class UserStateProvider extends InheritedWidget {
     required this.onGenerateGenericErrorDescription,
     required this.onGenerateGenericButtonLabel,
     super.key,
-  }) : userState = UserStateService();
+  }) : userStateService = UserStateService();
 
-  final UserStateService userState;
+  final UserStateService userStateService;
 
   final Widget Function(
     LoadingReason reason,
@@ -53,16 +53,16 @@ class UserStateProvider extends InheritedWidget {
     if (listen) {
       return context
           .dependOnInheritedWidgetOfExactType<UserStateProvider>()!
-          .userState;
+          .userStateService;
     } else {
       return context
           .getInheritedWidgetOfExactType<UserStateProvider>()!
-          .userState;
+          .userStateService;
     }
   }
 
   @override
   bool updateShouldNotify(UserStateProvider oldWidget) {
-    return userState != oldWidget.userState;
+    return userStateService != oldWidget.userStateService;
   }
 }

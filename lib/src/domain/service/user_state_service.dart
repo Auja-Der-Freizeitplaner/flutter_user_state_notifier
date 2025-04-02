@@ -15,6 +15,8 @@ class UserStateService extends ChangeNotifier {
 
   final ValueNotifier<Reason?> _reason = ValueNotifier(null);
   Reason? get reason => _reason.value;
+  
+  bool get isLoading => reason is LoadingReason;
 
   void setError([ErrorReason? reason]) {
     _reason.value = reason ?? GenericErrorReason();
