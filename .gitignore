@@ -27,3 +27,8 @@ migrate_working_dir/
 **/doc/api/
 .dart_tool/
 build/
+.fvm/flutter_sdk
+.fvm/fvm_config.json
+.fvm/release
+.fvm/version
+.fvm/versions/3.10.0

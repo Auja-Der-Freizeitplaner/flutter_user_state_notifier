@@ -8,7 +8,7 @@ class FallbackLoadingPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog.adaptive(
+    return AlertDialog(
       title: Text(reason.getCaption(context)),
       content: Column(
         mainAxisSize: MainAxisSize.min,
