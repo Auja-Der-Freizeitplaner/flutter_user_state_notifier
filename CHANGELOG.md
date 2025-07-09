@@ -2,7 +2,11 @@
 * Initial Release
 
 ## 1.1.0
-Bugix:
+Bugfix:
 * Disposing Listener throwed because of depricated context 
 Feature:
 * Added Loading Flag in UserStateService
+
+## 1.1.1
+Bugfix:
+- Fallback Popups failed in Web Platform
